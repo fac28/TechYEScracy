@@ -1,0 +1,8 @@
+BEGIN;
+
+INSERT INTO users VALUES
+  (1, 'deepa', '25'),
+  
+ON CONFLICT DO NOTHING;
+
+COMMIT;
