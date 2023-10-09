@@ -7,6 +7,7 @@ TechYEScracy is an application designed to facilitate user participation in the 
   - [Cloning the Repository](#cloning-the-repository)
   - [Installing npm Modules](#installing-npm-modules)
 - [Running the Application](#running-the-application)
+  - [Seeding the Database](#seeding-the-database)
   - [Local Development Server](#local-development-server)
   - [Running Tests](#running-tests)
 - [Contributors](#contributors)
@@ -30,6 +31,18 @@ npm install
 ```
 
 ## Running the Application
+
+
+### Seeding the Database
+
+To seed the database with initial data for testing and development purposes, you can use the following command:
+
+```bash
+npm run seed
+```
+
+This command will populate the database with sample data, allowing you to explore the TechYEScracy application with pre-defined policies and user information. It is especially useful for setting up a development environment or running tests.
+
 ### Local Development Server
 
 You can start a local development server by running the following command:
