@@ -1,7 +1,7 @@
 BEGIN;
 
 INSERT INTO users VALUES
-  (1, 'deepa', '25'),
+  (1, 'deepa','2017-12-25 00:00:00', '25'),
   
 ON CONFLICT DO NOTHING;
 
