@@ -19,7 +19,7 @@ router.get("/authenticate", (req, res) => {
       // this is just an over-simplified example
       // so we just stick the username into the cookie
       console.log(user);  // remove later. Useful for checking format of data back from api
-      res.cookie("user", user.login, {
+      res.cookie("user", user, {
         httpOnly: true,
         signed: true,
         maxAge: 1000 * 60 * 60 * 24, // 1 day
