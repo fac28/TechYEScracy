@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS polls (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER REFERENCES users(id),
   content TEXT,
-  yes TEXT,
-  no TEXT,
+  yes INTEGER,
+  no INTEGER,
   expires_at DATETIME NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
