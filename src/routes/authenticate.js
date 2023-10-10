@@ -1,12 +1,7 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
+require('dotenv').config()
 
-// all the fetch requests to GitHub happen in api.js
 const api = require("./api.js");
-
-const server = express();
-
-server.use(cookieParser("this should really be a secret env var"));
 const router = express.Router();
 
 // this is the route GitHub redirects users back to after the log in
@@ -23,6 +18,7 @@ router.get("/authenticate", (req, res) => {
       // do some proper session cookie stuff etc
       // this is just an over-simplified example
       // so we just stick the username into the cookie
+      console.log(user);  // remove later. Useful for checking format of data back from api
       res.cookie("user", user.login, {
         httpOnly: true,
         signed: true,
@@ -33,13 +29,10 @@ router.get("/authenticate", (req, res) => {
     });
 });
 
-server.post("/log-out", (req, res) => {
-  res.clearCookie("user");
-  res.redirect("../");
-});
+// router.post("/log-out", (req, res) => {
+//   res.clearCookie("user");
+//   res.redirect("../");
+// });
 
-const PORT = process.env.PORT;
-
-server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
 module.exports = router;

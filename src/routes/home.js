@@ -1,5 +1,5 @@
 const express = require("express");
-
+require('dotenv').config()
 //Variables
 const router = express.Router();
 
