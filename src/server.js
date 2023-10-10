@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
-const homeRout = require("./routes/home");
+const homeRoute = require("./routes/home");
 const authenticate = require("./routes/authenticate");
 const logOut = require("./routes/log-out");
+const vote = require("./routes/vote");
 // const { getSession, removeSession } = require('./model/session.js');
 const body = express.urlencoded({ extended: false });
 // const cookies = cookieParser(process.env.COOKIE_SECRET);
@@ -34,12 +35,13 @@ app.use((req, res, next) => {
   next();
 });
 // app.use(cookies);
-// app.use(body);
-// app.use(express.static('public'));
+app.use(body);
+app.use(express.static('public'));
 
 //Routes
 
-app.get("/", homeRout);
-app.get("/authenticate", authenticate);
-app.post("/log-out", logOut);
+app.use("/", homeRoute);
+app.use("/authenticate", authenticate);
+app.use("/log-out", logOut);
+app.post("/vote", vote);
 module.exports = app;

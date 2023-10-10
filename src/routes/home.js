@@ -10,10 +10,8 @@ const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${client_i
 
 router.get("/", (req, res) => {
   const user = req.signedCookies ? req.signedCookies.user : false;
-  // if (user) {
-  //   return res.send(home(LOGIN_URL,user))
-  // }
   return res.send(home(LOGIN_URL,user))
 });
+
 
 module.exports = router;
