@@ -1,11 +1,12 @@
 const { layout } = require('./layout.js');
 const { getPollList } = require('../models/polls.js');
 
-function home(LOGIN_URL,user) {
-    const title = 'TechYEScracy';
-    let logIn = `<a href="${LOGIN_URL}">Log in with GitHub</a>`;
-    if (user) {
-        logIn = `
+
+function home(LOGIN_URL, user) {
+  const title = "TechYEScracy";
+  let logIn = `<a href="${LOGIN_URL}">Log in with GitHub</a>`;
+  if (user) {
+    logIn = `
         <h2><img src=${user.avatar_url}>${user.login} Followers: ${user.followers}</h2>
         <form action="/log-out" method="post"><button>Log out</button></form>`;
     }
@@ -31,6 +32,9 @@ function home(LOGIN_URL,user) {
         </div>
         <div class="">
             ${logIn}
+            <form action='/form' method= 'GET'  >
+            <button type ="submit">Create Poll</button>
+            </form>
         </div>
         <div class="">
             <h2>Polls</h2>
@@ -41,6 +45,6 @@ function home(LOGIN_URL,user) {
     </div>
     `;
 
-    return layout({ title, content });
+  return layout({ title, content });
 }
 module.exports = { home };
