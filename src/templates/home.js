@@ -41,6 +41,9 @@ function home(LOGIN_URL, user) {
             <form action='/form' method= 'GET'  >
             <button type ="submit">Create Poll</button>
             </form>
+            <form action='expired' method= 'GET'  >
+            <button type ="submit">View the Bill of Rights</button>
+            </form>
         </div>
         <div class="">
             <h2>Polls</h2>

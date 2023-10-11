@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const homeRout = require("./routes/home");
 const formRout = require("./routes/form");
 const authenticate = require("./routes/authenticate");
+const expired = require("./routes/expired")
 const logOut = require("./routes/log-out");
 const { getSession, removeSession } = require("./models/sessions.js");
 const vote = require("./routes/vote");
@@ -44,11 +45,12 @@ app.use(express.static("public"));
 
 //Routes
 
-app.get("/", homeRout);
-app.get("/form", formRout);
-app.post("/form", formRout);
-app.get("/authenticate", authenticate);
-app.post("/log-out", logOut);
-app.post("/vote", vote);
+app.use("/", homeRout);
+app.use("/form", formRout);
+// app.post("/form", formRout);
+app.use("/authenticate", authenticate);
+app.use("/log-out", logOut);
+app.use("/vote", vote);
+app.use("/expired", expired)
 
 module.exports = app;
