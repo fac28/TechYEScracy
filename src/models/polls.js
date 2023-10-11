@@ -23,12 +23,14 @@ const update_voteNo = db.prepare(/*sql*/ `
   RETURNING id
 `);
 
+
 function updatePoll(poll_id, vote_type, voteCount) {
   if (vote_type === 'yes') {
     return update_voteYes.get({ poll_id, voteCount });
   }
   if (vote_type === 'no') {
     return update_voteNo.get({ poll_id, voteCount });
+
   }
 }
 
