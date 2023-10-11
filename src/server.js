@@ -55,7 +55,7 @@ app.use("/vote", vote);
 app.use("/expired", expired)
 
 //404 handler
-app.use((req, res) => {
+app.get((req, res) => {
   return res.status(404).send(notFound())
 });
 

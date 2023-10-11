@@ -9,7 +9,7 @@ const router = express.Router();
 // there'll be a ?code=xxx search params provided by GH for us to use
 // we need to POST this code to GH to get an access_token for talking to their API
 
-router.get('/authenticate', (req, res) => {
+router.get('/', (req, res) => {
   try {
     const code = req.query.code;
     api
@@ -29,7 +29,7 @@ router.get('/authenticate', (req, res) => {
         if (user) {
           const existingUser = getUserByUsername(user.login);
           if (existingUser) {
-            return res.redirect('../');
+            return res.redirect('/');
           }
           const userID = createUser(user.login, user.followers);
 
@@ -41,7 +41,7 @@ router.get('/authenticate', (req, res) => {
             httpOnly: true,
           });
         }
-        res.redirect('../');
+        res.redirect('/');
       });
   } catch {
     console.error('Error with route:', error.message);
