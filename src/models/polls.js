@@ -1,4 +1,4 @@
-const db = require("../database/db.js");
+const db = require('../database/db.js');
 
 const insert_poll = db.prepare(/*sql*/ `
   INSERT INTO polls (user_id, content, expires_at)
@@ -23,13 +23,14 @@ const update_voteNo = db.prepare(/*sql*/ `
   RETURNING id
 `);
 
-function updatePoll(poll_id , vote_type, voteCount) {
-  console.log({poll_id,vote_type,voteCount})
-  if (vote_type === "yes") {
-    return update_voteYes.get({poll_id,voteCount});
+
+function updatePoll(poll_id, vote_type, voteCount) {
+  if (vote_type === 'yes') {
+    return update_voteYes.get({ poll_id, voteCount });
   }
-  if (vote_type === "no") {
-    return update_voteNo.get({poll_id,voteCount});
+  if (vote_type === 'no') {
+    return update_voteNo.get({ poll_id, voteCount });
+
   }
 }
 
@@ -53,4 +54,4 @@ function getPollList(expired) {
   return select_all_activePolls.all();
 }
 
-module.exports = { createPoll,getPollByID, getPollList, updatePoll };
+module.exports = { createPoll, getPollByID, getPollList, updatePoll };

@@ -2,7 +2,7 @@ const { layout } = require('./layout.js');
 const { getPollList } = require('../models/polls.js');
 
 function home(LOGIN_URL, user) {
-  const title = 'Tech<span class="title-highlight">YES</span>cracy';
+  const title = 'TechYEScracy';
   let logIn = `<a href="${LOGIN_URL}" class="log-button">Log in with GitHub</a>`;
   if (user) {
     logIn = `
@@ -18,7 +18,6 @@ function home(LOGIN_URL, user) {
             </div>
         </div>`;
   }
-
   const polls = getPollList(false);
 
   const pollListHtml = polls
@@ -46,17 +45,21 @@ function home(LOGIN_URL, user) {
     })
     .join('');
 
+
   const content = /*html*/ ` 
     <header class="banner flex flex-column">
         <div class="flex title">
-            <h1>${title}</h1>
+            <h1>Tech<span class="title-highlight">YES</span>cracy</h1>
         </div>
             ${logIn}
     </header>
-    <section>
+    <section class="flex">
         <form action='/form' method= 'GET'  >
             <button type ="submit">Create Poll</button>
         </form>
+            <form action='expired' method= 'GET'  >
+            <button type ="submit">View the Bill of Rights</button>
+            </form>
     </section>
     <section>
     <h2>Polls</h2>

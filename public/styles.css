@@ -65,3 +65,8 @@ li {
 .title-highlight {
   color: red;
 }
+
+h2 {
+  width: fit-content;
+  margin: auto;
+}
