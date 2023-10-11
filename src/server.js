@@ -7,8 +7,10 @@ const homeRout = require("./routes/home");
 const formRout = require("./routes/form");
 const authenticate = require("./routes/authenticate");
 const logOut = require("./routes/log-out");
+const fourOhFour = require("./routes/fourOhFour.js");
+
 const { getSession, removeSession } = require("./models/sessions.js");
-const vote = require("./routes/vote");
+
 
 const body = express.urlencoded({ extended: false });
 
@@ -50,5 +52,6 @@ app.post("/form", formRout);
 app.get("/authenticate", authenticate);
 app.post("/log-out", logOut);
 app.post("/vote", vote);
+app.get("/:", fourOhFour)
 
 module.exports = app;
