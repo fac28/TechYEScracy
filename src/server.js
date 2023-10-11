@@ -8,13 +8,13 @@ const formRout = require("./routes/form");
 const authenticate = require("./routes/authenticate");
 const expired = require("./routes/expired")
 const logOut = require("./routes/log-out");
-const { getSession, removeSession } = require("./models/sessions.js");
+const notFound  = require("./templates/fourOhFour.js");
 const vote = require("./routes/vote");
+const { getSession, removeSession } = require("./models/sessions.js");
+
 
 const body = express.urlencoded({ extended: false });
 
-
-//const templates = require('./templates')
 
 function sessions(req, res, next) {
   const sid = req.signedCookies.sid;
@@ -45,12 +45,19 @@ app.use(express.static("public"));
 
 //Routes
 
+
+
 app.use("/", homeRout);
 app.use("/form", formRout);
-// app.post("/form", formRout);
 app.use("/authenticate", authenticate);
 app.use("/log-out", logOut);
 app.use("/vote", vote);
 app.use("/expired", expired)
+
+//404 handler
+app.use((req, res) => {
+  return res.status(404).send(notFound())
+});
+
 
 module.exports = app;
