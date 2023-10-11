@@ -1,6 +1,7 @@
 const express = require("express");
-require('dotenv').config()
-
+require("dotenv").config();
+const { createUser, getUserByUsername } = require("../models/user.js");
+const { createSession } = require("../models/sessions.js");
 const api = require("./api.js");
 const router = express.Router();
 
@@ -18,13 +19,28 @@ router.get("/authenticate", (req, res) => {
       // do some proper session cookie stuff etc
       // this is just an over-simplified example
       // so we just stick the username into the cookie
-      console.log("getUSer",user);  // remove later. Useful for checking format of data back from api
       res.cookie("user", user, {
         httpOnly: true,
         signed: true,
         maxAge: 1000 * 60 * 60 * 24, // 1 day
         sameSite: "lax",
       });
+      if (user) {
+        const existingUser = getUserByUsername(user.login);
+        if (existingUser) {
+          return res.redirect("../");
+        }
+        const userID = createUser(user.login, user.followers);
+
+        const session_id = createSession(userID.id);
+        res.cookie("sid", session_id, {
+          signed: true,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          sameSite: "lax",
+          httpOnly: true,
+        });
+      }
+
       res.redirect("../");
     });
 });
@@ -33,6 +49,5 @@ router.get("/authenticate", (req, res) => {
 //   res.clearCookie("user");
 //   res.redirect("../");
 // });
-
 
 module.exports = router;
