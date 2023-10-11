@@ -1,7 +1,7 @@
 BEGIN;
 
 INSERT INTO users VALUES
-  (1, 'sgroi-l', 39, 'image1.jpg', '2023-10-10 09:37:00' ),
+  (1, 'sgroi-l4354', 39, 'image1.jpg', '2023-10-10 09:37:00' ),
   (2, 'james', 1001, 'image2.jpg', '2023-10-10 10:57:00' ),
   (3, 'shaughn', 9999, 'image3.jpg', '2023-10-10 11:37:00' ),
   (4, 'deepa', 300, 'image4.jpg', '2023-10-10 11:54:00' )

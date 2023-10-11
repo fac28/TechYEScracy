@@ -23,14 +23,12 @@ const update_voteNo = db.prepare(/*sql*/ `
   RETURNING id
 `);
 
-
 function updatePoll(poll_id, vote_type, voteCount) {
   if (vote_type === 'yes') {
     return update_voteYes.get({ poll_id, voteCount });
   }
   if (vote_type === 'no') {
     return update_voteNo.get({ poll_id, voteCount });
-
   }
 }
 
@@ -54,4 +52,20 @@ function getPollList(expired) {
   return select_all_activePolls.all();
 }
 
-module.exports = { createPoll, getPollByID, getPollList, updatePoll };
+const insert_vote = db.prepare(/*sql*/ `
+  INSERT INTO votes (user_id, poll_id, vote_type)
+  VALUES ($user_id, $poll_id, $vote_type)
+  RETURNING id
+`);
+
+function createVote(user_id, poll_id, vote_type) {
+  return insert_vote.get({ user_id, poll_id, vote_type });
+}
+
+module.exports = {
+  createPoll,
+  getPollByID,
+  getPollList,
+  updatePoll,
+  createVote,
+};
