@@ -8,6 +8,7 @@ const client_secret = process.env.CLIENT_SECRET;
 const TOKEN_URL = "https://github.com/login/oauth/access_token";
 
 function getToken(code) {
+  console.log("get-token-func", code);
   const body = { client_id, client_secret, code };
   return fetch(TOKEN_URL, {
     method: "POST",
@@ -17,7 +18,10 @@ function getToken(code) {
     headers: { accept: "application/json", "content-type": "application/json" }
   })
     .then(getJson)
-    .then(data => data.access_token);
+    .then(data => {
+      data.access_token;
+      console.log(data);
+    });
 }
 
 const USER_URL = "https://api.github.com/user";
