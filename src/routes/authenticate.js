@@ -19,7 +19,6 @@ router.get("/authenticate", (req, res) => {
       // do some proper session cookie stuff etc
       // this is just an over-simplified example
       // so we just stick the username into the cookie
-      console.log(user.login + " followers = " + user.followers); // remove later. Useful for checking format of data back from api
       res.cookie("user", user, {
         httpOnly: true,
         signed: true,
