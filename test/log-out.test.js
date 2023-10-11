@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { reset, request } = require('./helpers.js');
-const { removeSession } = require('../src/models/sessions');
+const { removeSession } = require('../src/models/sessions.js');
 
 test('POST /logout removes session and cookies', async () => {
   reset();
