@@ -9,7 +9,10 @@ router.post('/vote', (req, res) => {
   try {
     const user = req.signedCookies ? req.signedCookies.user : false;
     const { poll_id, vote_type } = req.query;
-    updatePoll(poll_id, vote_type, 1);
+    if (user) {
+      updatePoll(poll_id, vote_type, parseInt(user.followers));
+    }
+
     return res.redirect('../');
   } catch {
     console.error('Error with route:', error.message);
