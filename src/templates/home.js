@@ -15,11 +15,11 @@ function home(LOGIN_URL, user) {
 
    
      const pollListHtml = polls.map(poll => {
-         return `<li>${poll.content} - Yes: ${poll.yes}, No: ${poll.no}</li>
-         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=true" class="">
+         return `<li>${poll.content} - Yes: ${Math.floor(poll.yes)}, No: ${Math.floor(poll.no)}</li>
+         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=yes" class="">
          <button class="button" type="submit">Yes</button>
          </form>
-         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=false" class="">
+         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=no" class="">
         <button class="button" type="submit">No</button>
         </form>
          `;
