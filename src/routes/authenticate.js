@@ -27,13 +27,11 @@ router.get('/', (req, res) => {
           sameSite: 'lax',
         });
         if (user) {
-          const existingUser = getUserByUsername(user.login);
-          if (existingUser) {
-            return res.redirect('/');
+          let existingUser = getUserByUsername(user.login);
+          if (!existingUser) {
+            existingUser = createUser(user.login, user.followers);
           }
-          const userID = createUser(user.login, user.followers);
-
-          const session_id = createSession(userID.id);
+          const session_id = createSession(existingUser.id);
           res.cookie('sid', session_id, {
             signed: true,
             maxAge: 1000 * 60 * 60 * 24 * 7,
@@ -47,7 +45,6 @@ router.get('/', (req, res) => {
     console.error('Error with route:', error.message);
     throw error;
   }
-
 });
 
 module.exports = router;
