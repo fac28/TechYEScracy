@@ -82,11 +82,32 @@ test('voting yes should increase the yes vote count', () => {
   reset();
   createUser('Egg', 20);
   createPoll(1, 'No eggs');
-  const poll = getPollByID('1');
-  const yesBefore = poll.yes;
+  const pollBefore = getPollByID('1');
+  const yesBefore = pollBefore.yes;
 
-  updatePoll(1, 'yes', 1);
-  const yesAfter = poll.yes;
-  console.log(yesBefore);
-  console.log(yesAfter);
+  updatePoll('1', 'yes', 1);
+  const pollAfter = getPollByID('1');
+  const yesAfter = pollAfter.yes;
+
+  assert.ok(
+    yesBefore < yesAfter,
+    `Expected ${yesBefore} to be less than ${yesAfter}`,
+  );
+});
+
+test('voting no should increase the no vote count', () => {
+  reset();
+  createUser('Egg', 20);
+  createPoll(1, 'No eggs');
+  const pollBefore = getPollByID('1');
+  const noBefore = pollBefore.no;
+
+  updatePoll('1', 'no', 1);
+  const pollAfter = getPollByID('1');
+  const noAfter = pollAfter.no;
+
+  assert.ok(
+    noBefore < noAfter,
+    `Expected ${noBefore} to be less than ${noAfter}`,
+  );
 });
