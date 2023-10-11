@@ -4,12 +4,21 @@ const { getPollList } = require('../models/polls.js');
 
 function expired(LOGIN_URL, user) {
   const title = "Bill of Rights";
-  let logIn = `<a href="${LOGIN_URL}">Log in with GitHub</a>`;
+  let logIn = `<a href="${LOGIN_URL}" class="log-button">Log in with GitHub</a>`;
   if (user) {
     logIn = `
-        <h2><img src=${user.avatar_url}>${user.login} Followers: ${user.followers}</h2>
-        <form action="/log-out" method="post"><button>Log out</button></form>`;
-    }
+        <div class="flex user-container">
+            <div class="user flex">
+                <img src=${user.avatar_url} class="avatar">
+                <p>${user.login}<br> Followers: ${user.followers}</p>
+            </div>
+            <div class="flex">
+                <form action="/log-out" method="post">
+                    <button class="log-button">Log out</button>
+                </form>
+            </div>
+        </div>`;
+  }
 
     const polls = getPollList(true); 
 
