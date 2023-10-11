@@ -1,14 +1,9 @@
 const { layout } = require('./layout.js');
 const { getPollList } = require('../models/polls.js');
 
-function home(LOGIN_URL, user) {
-  const title = 'TechYEScracy';
-  let logIn = `<a href="${LOGIN_URL}">Log in with GitHub</a>`;
-  if (user) {
-    logIn = `
-        <h2><img src=${user.avatar_url}>${user.login} Followers: ${user.followers}</h2>
-        <form action="/log-out" method="post"><button>Log out</button></form>`;
-  }
+function notFound() {
+  const title = 'Not Found';
+ 
 
   const polls = getPollList(false);
 
@@ -35,16 +30,9 @@ function home(LOGIN_URL, user) {
     <div class="banner">
         <div class="title">
             <h1>TechYEScracy</h1>
+            <h1>404 - Page not Found</h1>
         </div>
-        <div class="">
-            ${logIn}
-            <form action='/form' method= 'GET'  >
-            <button type ="submit">Create Poll</button>
-            </form>
-            <form action='expired' method= 'GET'  >
-            <button type ="submit">View the Bill of Rights</button>
-            </form>
-        </div>
+     
         <div class="">
             <h2>Polls</h2>
             <ul>
@@ -56,4 +44,4 @@ function home(LOGIN_URL, user) {
 
   return layout({ title, content });
 }
-module.exports = { home };
+module.exports = notFound ;

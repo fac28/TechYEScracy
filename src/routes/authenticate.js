@@ -41,18 +41,13 @@ router.get('/authenticate', (req, res) => {
             httpOnly: true,
           });
         }
-
         res.redirect('../');
       });
   } catch {
     console.error('Error with route:', error.message);
     throw error;
   }
-});
 
-// router.post("/log-out", (req, res) => {
-//   res.clearCookie("user");
-//   res.redirect("../");
-// });
+});
 
 module.exports = router;
