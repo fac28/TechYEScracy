@@ -2,11 +2,14 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
+
 const homeRout = require("./routes/home");
 const formRout = require("./routes/form");
 const authenticate = require("./routes/authenticate");
 const logOut = require("./routes/log-out");
 const { getSession, removeSession } = require("./models/sessions.js");
+const vote = require("./routes/vote");
+
 const body = express.urlencoded({ extended: false });
 
 
@@ -34,6 +37,7 @@ app.use((req, res, next) => {
   console.log(`${time} ${req.method} ${req.url}`);
   next();
 });
+
 app.use(sessions);
 app.use(body);
 app.use(express.static("public"));
@@ -45,5 +49,6 @@ app.get("/form", formRout);
 app.post("/form", formRout);
 app.get("/authenticate", authenticate);
 app.post("/log-out", logOut);
+app.post("/vote", vote);
 
 module.exports = app;
