@@ -8,7 +8,6 @@ const client_secret = process.env.CLIENT_SECRET;
 const TOKEN_URL = "https://github.com/login/oauth/access_token";
 
 function getToken(code) {
-  console.log("get-token-func", code);
   const body = { client_id, client_secret, code };
   return fetch(TOKEN_URL, {
     method: "POST",
@@ -18,10 +17,7 @@ function getToken(code) {
     headers: { accept: "application/json", "content-type": "application/json" }
   })
     .then(getJson)
-    .then(data => {
-      data.access_token;
-      console.log(data.access_token);
-    });
+    .then(data => data.access_token);
 }
 
 const USER_URL = "https://api.github.com/user";
@@ -29,16 +25,11 @@ const USER_URL = "https://api.github.com/user";
 function getUser(token) {
   return fetch(USER_URL, {
     headers: { accept: "application/json", authorization: `token ${token}` }
-  }).then(data => {
-    console.log("get user", data)
-    getJson(data);
-
-  });
+  }).then(getJson);
 }
 
 function getJson(response) {
   if (!response.ok) {
-    console.log("getJson res", response)
     const error = new Error("HTTP Error");
     error.status = response.statusCode;
     throw error;
