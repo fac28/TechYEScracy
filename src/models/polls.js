@@ -24,8 +24,13 @@ const update_voteNo = db.prepare(/*sql*/ `
 `);
 
 function updatePoll(poll_id , vote_type, voteCount) {
-  if (!vote_type) return update_voteYes.get({poll_id,voteCount});
-  return update_voteNo.get({poll_id,voteCount} );
+  console.log({poll_id,vote_type,voteCount})
+  if (vote_type === "yes") {
+    return update_voteYes.get({poll_id,voteCount});
+  }
+  if (vote_type === "no") {
+    return update_voteNo.get({poll_id,voteCount});
+  }
 }
 
 const select_poll_by_id = db.prepare(/*sql*/ `
