@@ -21,7 +21,7 @@ function getUserByUsername(username) {
 
 const select_user_by_userID = db.prepare(/*sql*/ `
   SELECT id, username, followers
-  FROM users WHERE username = ?
+  FROM users WHERE id = ?
 `);
 
 function getUserByUserID(user_id) {
