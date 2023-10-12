@@ -17,6 +17,13 @@ test('POST /form creates a new poll', async () => {
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
   });
 
+ 
+  const createdPoll = createPoll(user.id, question);
+  assert.ok(
+    createdPoll,
+    'Expected a poll to be created using the createPoll function',
+  );
+
   const pollCount = count('polls');
 
   assert.equal(pollCount, 1, 'Expected one poll to be created');
@@ -24,11 +31,6 @@ test('POST /form creates a new poll', async () => {
     status,
     200,
     `Expected sign up to redirect, but got status: ${status}`,
-  );
-  const createdPoll = createPoll(user.id, question);
-  assert.ok(
-    createdPoll,
-    'Expected a poll to be created using the createPoll function',
   );
 
   reset();
