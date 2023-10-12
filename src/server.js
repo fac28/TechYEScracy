@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-
-
 const homeRout = require("./routes/home");
 const formRout = require("./routes/form");
 const authenticate = require("./routes/authenticate");
@@ -10,9 +8,7 @@ const expired = require("./routes/expired")
 const logOut = require("./routes/log-out");
 const notFound  = require("./templates/fourOhFour.js");
 const vote = require("./routes/vote");
-const { getSession, removeSession } = require("./models/sessions.js");
-
-
+const { getSession, removeSession } = require("./models/sessions.js")
 const body = express.urlencoded({ extended: false });
 
 

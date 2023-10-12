@@ -3,7 +3,7 @@
 /* Variables */
 :root {
   --text-primary: #542e71;
-  --background-colour: #84a9c0;
+  --background-colour: #84a9c099;
   --primary-dark: #542e71;
   --primary-light: #ddd8b8;
 }
@@ -54,6 +54,8 @@ li {
   padding: 10px;
   list-style-type: none;
   margin-bottom: 20px;
+  border-radius: 4%;
+  background-color: #542e7121;
 }
 
 .poll-wrapper {
@@ -78,4 +80,31 @@ button {
   background-color: var(--primary-dark);
   border-style: none;
   color: var(--primary-light);
+  margin: 0 20px;
+  transform:translateY(2px);
+  transition-duration: 150ms;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgba(174, 0, 255, 0.337);
+
+}
+
+button:active {
+  background-color: rgba(174, 0, 255, 0.125);
+  transform:translateY(5px);
+}
+
+.intro {
+  width: 70%;
+  margin: 10px auto;
+  line-height: 24px;
+  background-color: #542e7127;
+  padding: 3px 15px;
+  border-radius: 5%;
+}
+
+.log-button {
+  margin: 20px 20px;
 }

@@ -60,11 +60,13 @@ function home(LOGIN_URL, user) {
             <button type ="submit">View the Bill of Rights</button>
             </form>
     </section>
+    <div class="intro">
     <p> Welcome to the dazzling world of TechYEScracy, where we've flipped the script on governance and handed the reins to techxperts. Ever wondered what it would be like if your software engineer neighbor had more influence over your life than your local representative? Well, you're in for a treat! Here, you can cast your votes on new laws or submit your own for consideration. 
     </p>
     
     <p>Dive into our "Bill of Rights," where we proudly display all the laws that have somehow managed to pass through this digital wonderland. And, of course, don't forget to boost your vote's credibility by showcasing your GitHub clout - because, in this brave new world, lines of code hold more weight than lines of reasoning. Welcome to the TechYEScracy revolution!
     </p>
+    </div>
     <section>
     <h2>Polls</h2>
         <div class="poll-wrapper">
