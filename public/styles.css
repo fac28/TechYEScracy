@@ -50,12 +50,13 @@ h1 {
 
 li {
   width: 70vw;
-  border-style: solid;
+  border: 2px solid #542e71;
   padding: 10px;
   list-style-type: none;
   margin-bottom: 20px;
-  border-radius: 4%;
+  border-radius: 3%;
   background-color: #542e7121;
+  box-shadow: 2px 3px 3px #888;
 }
 
 .poll-wrapper {
@@ -83,6 +84,7 @@ button {
   margin: 0 20px;
   transform:translateY(2px);
   transition-duration: 150ms;
+  box-shadow: 1px 1px 3px #888;
 }
 
 button:hover {
