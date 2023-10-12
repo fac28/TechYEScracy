@@ -2,8 +2,10 @@
 
 /* Variables */
 :root {
-  --text-primary: hsl(0, 0%, 30%);
-  --background-colour: hsl(76, 57%, 91%);
+  --text-primary: #542e71;
+  --background-colour: #84a9c0;
+  --primary-dark: #542e71;
+  --primary-light: #ddd8b8;
 }
 
 body {
@@ -29,7 +31,7 @@ body {
 }
 
 h1 {
-  text-shadow: 10px;
+  font-size: 4em;
 }
 
 .avatar {
@@ -69,4 +71,11 @@ li {
 h2 {
   width: fit-content;
   margin: auto;
+}
+
+button {
+  border-radius: 10px;
+  background-color: var(--primary-dark);
+  border-style: none;
+  color: var(--primary-light);
 }

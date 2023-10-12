@@ -52,7 +52,7 @@ function home(LOGIN_URL, user) {
         </div>
             ${logIn}
     </header>
-    <section class="flex">
+    <section id= 'pageLinks'class="flex">
         <form action='/form' method= 'GET'  >
             <button type ="submit">Create Poll</button>
         </form>
