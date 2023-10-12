@@ -20,11 +20,21 @@ CREATE TABLE IF NOT EXISTS polls (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS votes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER REFERENCES users(id),
+  poll_id INTEGER REFERENCES polls(id),
+  vote_type TEXT, 
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, poll_id)  -- Ensure that a user can vote on a poll only once
+);
+
 CREATE TABLE IF NOT EXISTS sessions (
   id TEXT PRIMARY KEY,
   user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
   expires_at DATETIME NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 
 COMMIT;
