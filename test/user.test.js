@@ -5,9 +5,6 @@ const { createUser, getUserByUsername, getUserByUserID } = require(
   `../src/models/user.js`
 );
 
-test("test test", () => {
-    assert.equal(1, "1", "Expected 1 to be equal to '1'");
-  });
   
   test("can create a new user", () => {
     reset();

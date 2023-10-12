@@ -9,6 +9,9 @@ router.post('/', (req, res) => {
   try {
     const user = req.signedCookies ? req.signedCookies.user : false;
     const { poll_id, vote_type } = req.query;
+    if (!user) {
+      return;
+    }
     const userID = getUserByUsername(user.login);
 
     console.log(userID);
@@ -23,7 +26,7 @@ router.post('/', (req, res) => {
     return res.redirect('/');
   } catch (error) {
     console.error('Error with route:', error.message);
-    throw error;
+    return;
   }
 });
 
