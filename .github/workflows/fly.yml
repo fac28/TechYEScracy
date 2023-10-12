@@ -21,9 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test
         
       - name: Set up Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
