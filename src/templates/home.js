@@ -45,7 +45,6 @@ function home(LOGIN_URL, user) {
     })
     .join('');
 
-
   const content = /*html*/ ` 
     <header class="banner flex flex-column">
         <div class="flex title">
@@ -53,7 +52,7 @@ function home(LOGIN_URL, user) {
         </div>
             ${logIn}
     </header>
-    <section class="flex">
+    <section id= 'pageLinks'class="flex">
         <form action='/form' method= 'GET'  >
             <button type ="submit">Create Poll</button>
         </form>
