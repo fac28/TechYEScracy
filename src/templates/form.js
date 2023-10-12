@@ -1,12 +1,12 @@
 const { layout } = require("./layout.js");
 
 function form() {
-  const title = "AddPoll";
+  const title = "Propose a law";
 
   const content = /*html*/ ` 
       <div class="banner">
           <div class="title">
-              <h1>Add Poll</h1>
+              <h1>Propose a new law</h1>
           </div>
           <div class="">
               

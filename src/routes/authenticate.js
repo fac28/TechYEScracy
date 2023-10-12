@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
       .getToken(code)
       .then(api.getUser)
       .then((user) => {
+        console.log(user);
         // probably create a new user in your own DB here
         // do some proper session cookie stuff etc
         // this is just an over-simplified example

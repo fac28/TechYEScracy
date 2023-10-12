@@ -45,8 +45,6 @@ app.use(express.static("public"));
 
 //Routes
 
-
-
 app.use("/", homeRout);
 app.use("/form", formRout);
 app.use("/authenticate", authenticate);
