@@ -1,48 +1,75 @@
 const { layout } = require('./layout.js');
 const { getPollList } = require('../models/polls.js');
 
-
 function home(LOGIN_URL, user) {
-  const title = "TechYEScracy";
-  let logIn = `<a href="${LOGIN_URL}">Log in with GitHub</a>`;
+  const title = 'TechYEScracy';
+  let logIn = `<a href="${LOGIN_URL}" class="log-button">Log in with GitHub</a>`;
   if (user) {
     logIn = `
-        <h2><img src=${user.avatar_url}>${user.login} Followers: ${user.followers}</h2>
-        <form action="/log-out" method="post"><button>Log out</button></form>`;
-    }
+        <div class="flex user-container">
+            <div class="user flex">
+                <img src=${user.avatar_url} class="avatar">
+                <p>${user.login}<br> Followers: ${user.followers}</p>
+            </div>
+            <div class="flex">
+                <form action="/log-out" method="post">
+                    <button class="log-button">Log out</button>
+                </form>
+            </div>
+        </div>`;
+  }
+  const polls = getPollList(false);
 
-    const polls = getPollList(false); 
-
-   
-     const pollListHtml = polls.map(poll => {
-         return `<li>${poll.content} - Yes: ${Math.floor(poll.yes)}, No: ${Math.floor(poll.no)}</li>
-         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=yes" class="">
-         <button class="button" type="submit">Yes</button>
-         </form>
-         <form method="POST" action="/vote?poll_id=${poll.id}&vote_type=no" class="">
-        <button class="button" type="submit">No</button>
-        </form>
+  const pollListHtml = polls
+    .map((poll) => {
+      return `<li class="flex flex-column">
+      <div>
+            <p>${poll.content}<br>Vote count:<br>Yes: ${Math.floor(
+              poll.yes,
+            )} - No: ${Math.floor(poll.no)}</p>
+      </div>
+      <div class="flex votetype">
+      <form method="POST" action="/vote?poll_id=${
+        poll.id
+      }&vote_type=yes" class="">
+      <button class="button" type="submit">Yes</button>
+      </form>
+      <form method="POST" action="/vote?poll_id=${
+        poll.id
+      }&vote_type=no" class="">
+     <button class="button" type="submit">No</button>
+     </form>
+     </div>
+      </li>
          `;
-     }).join('');
+    })
+    .join('');
 
-    const content = /*html*/ ` 
-    <div class="banner">
-        <div class="title">
-            <h1>TechYEScracy</h1>
+
+  const content = /*html*/ ` 
+    <header class="banner flex flex-column">
+        <div class="flex title">
+            <h1>Tech<span class="title-highlight">YES</span>cracy</h1>
         </div>
-        <div class="">
             ${logIn}
-            <form action='/form' method= 'GET'  >
+    </header>
+    <section class="flex">
+        <form action='/form' method= 'GET'  >
             <button type ="submit">Create Poll</button>
+        </form>
+            <form action='expired' method= 'GET'  >
+            <button type ="submit">View the Bill of Rights</button>
             </form>
-        </div>
-        <div class="">
-            <h2>Polls</h2>
-            <ul>
+    </section>
+    <section>
+    <h2>Polls</h2>
+        <div class="poll-wrapper">
+            
+            
                 ${pollListHtml}
-            </ul>
+            
         </div>
-    </div>
+    </section>
     `;
 
   return layout({ title, content });
